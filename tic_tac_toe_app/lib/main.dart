@@ -60,6 +60,23 @@ class _HomePageState extends State<HomePage> {
     return false;
   }
 
+  Color getColor(int element) {
+    if (isPlayer1Won == null) {
+      if (_player1.contains(element)) {
+        return Colors.blue;
+      } else {
+        return Colors.green;
+      }
+    } else {
+      if (isPlayer1Won! && winningTile.contains(element) ||
+          !isPlayer1Won! && winningTile.contains(element)) {
+        return Colors.red;
+      } else {
+        return Colors.grey;
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,25 +103,16 @@ class _HomePageState extends State<HomePage> {
                         elevation: 4.0,
                         child: Center(
                           child: Text(
-                            !_player1.contains(element) &&
-                                    !_player2.contains(element)
-                                ? ''
-                                : _player1.contains(element)
-                                    ? 'x'
-                                    : 'o',
-                            style: TextStyle(
+                              !_player1.contains(element) &&
+                                      !_player2.contains(element)
+                                  ? ''
+                                  : _player1.contains(element)
+                                      ? 'x'
+                                      : 'o',
+                              style: TextStyle(
                                 fontSize: 60,
-                                color: isPlayer1Won == null
-                                    ? _player1.contains(element)
-                                        ? Colors.blue
-                                        : Colors.green
-                                    : (isPlayer1Won! &&
-                                                winningTile.contains(element) ||
-                                            !isPlayer1Won! &&
-                                                winningTile.contains(element))
-                                        ? Colors.red
-                                        : Colors.grey),
-                          ),
+                                color: getColor(element),
+                              )),
                         ),
                       ),
                       onTap: () {
