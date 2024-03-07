@@ -80,6 +80,9 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("Tic-Tac-Toe"),
+      ),
       body: Container(
         padding: const EdgeInsets.all(20.0),
         margin: const EdgeInsets.symmetric(vertical: 30.0, horizontal: 5.0),
@@ -148,16 +151,6 @@ class _HomePageState extends State<HomePage> {
                               SnackBar(
                                 content: Text(
                                     'Player ${isPlayer1Won! ? '1' : '2'} Won this match!'),
-                              ),
-                            );
-                          }
-
-                          if (player1WinCount + player2WinCount == 3) {
-                            ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                    'Player ${(player1WinCount > player2WinCount) ? '1' : (player2WinCount > player1WinCount) ? '2' : 'draw'} is the winner !!'),
                               ),
                             );
                           }
